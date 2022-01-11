@@ -62,3 +62,9 @@
 - DynamoDB (Amazon product; key-value pairing)
 - Cassandra (Reddit; wide column format)
 - Amazon Neptune (graph DB)
+
+## MongoDB; WTF is it????
+
+- Document-based NoSQL DB
+- It uses JSON-like documents with optional schemas to help define how documents of different types are formatted.
+- "Schema" refers to an organizational blueprint of how a DB is put together.

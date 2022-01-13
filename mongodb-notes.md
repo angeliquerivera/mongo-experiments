@@ -67,4 +67,4 @@
 
 - Document-based NoSQL DB
 - It uses JSON-like documents with optional schemas to help define how documents of different types are formatted.
-- "Schema" refers to an organizational blueprint of how a DB is put together.
+- "Schema" refers to an organizational blueprint of how a DB and its collections are put together.

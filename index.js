@@ -16,7 +16,6 @@ const Idol = require("./schema/Idol"); //local import
 // }
 async function run() {
   // const idolTwo = await Idol.create({ name: "Ninomae Ina'nis", height: 157 });
-
   // idolTwo.name = "Takanashi Kiara";
   // idolTwo.height = 165;
   // await idolTwo.save();

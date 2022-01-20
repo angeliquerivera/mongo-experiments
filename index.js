@@ -15,13 +15,17 @@ const Idol = require("./schema/Idol"); //local import
 //   console.log(idolTwo);
 // }
 async function run() {
-  // const idolTwo = await Idol.create({ name: "Ninomae Ina'nis", height: 157 });
-  // idolTwo.name = "Takanashi Kiara";
-  // idolTwo.height = 165;
-  // await idolTwo.save();
-  // console.log(idolTwo);
-  const idols = await Idol.find();
-  console.log(idols);
+  try {
+    const idolFive = await Idol.create({
+      name: "Akai Haato",
+      subcount: 1330000,
+    });
+    console.log(idolFive);
+    // const idols = await Idol.find();
+    // console.log(idols);
+  } catch (error) {
+    console.error(error.message);
+  }
 }
 run();
 

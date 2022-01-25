@@ -16,13 +16,12 @@ const Idol = require("./schema/Idol"); //local import
 // }
 async function run() {
   try {
-    const idolFive = await Idol.create({
-      name: "Akai Haato",
-      subcount: 1330000,
-    });
-    console.log(idolFive);
-    // const idols = await Idol.find();
-    // console.log(idols);
+    // Nene: "61ef5944004f4e91fbc4adca"-
+    // Polka:"61ef596c705f46b8ed0c418a"
+    const findNene = await Idol.findById("61ef5944004f4e91fbc4adca");
+    findNene.unitMembers.push("nene has almost a million husbands");
+    await findNene.save();
+    console.log(findNene);
   } catch (error) {
     console.error(error.message);
   }

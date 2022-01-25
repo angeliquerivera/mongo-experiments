@@ -6,7 +6,12 @@
 
 ## What is a schema?
 
-"Schema" refers to an organizational blueprint of how a DB and its collections are put together.
+- Schema" refers to an organizational blueprint of how a DB and its collections are put together.
+  - A subschema is good to have when the parent schema will have nested data that itself is plentiful. It may not be necessary to define a subschema if the nested data is only a few simple fields.
+
+### How is a schema used in the creating and updating of documents?
+
+- When you try to create/update a document, Mongoose/MongoDB will refer to the schema that you have defined to see if the data fields and corresponding values are valid as defined by the attribute validators in the schema.
 
 ## What is `_id` on a Mongo document object?
 
@@ -23,6 +28,8 @@
 - **In a MongoDB collection, not all document objects need to have all the same fields.**
 
 - When it comes to document field errors, by defining the types in the schema, you can catch errors when a document field type doesn't match the defined schema.
+
+## What is a `try-catch` block?
 
 - A `try-catch block` is what you use when you have asynchronous operations to attempt a certain operation and catch exceptions if they're thrown.
   - In the try-block, it'll try to do stuff. If the stuff in the try-block fails, the catch-block will return whatever error the try operation produced.
@@ -68,3 +75,55 @@ const someSchema = new mongoose.Schema({
 ### Custom Validation
 
 - Custom validators are objects that contain a `validator` key-function pair and a `message` key-string pair.
+
+## MongoDB methods and validation; a warning
+
+### Manual `.save()`
+
+```js
+async function run() {
+  const idol2 = new Idol({ name: "Mori Calliope", height: 167 });
+  await idol2.save(); // <-- .save() will use the pre-defined schema validation
+  console.log(idol2);
+}
+run();
+```
+
+### `Model.create()`
+
+```js
+async function run() {
+  const idol2 = await Idol.create({ name: "Mori Calliope", height: 167 });
+
+  idol2.name = "Houshou Marine";
+  idol2.save();
+  // .create() is a mongoose Model method that will use pre-defined schema validation
+}
+```
+
+## Document querying
+
+- For single document queries, if you want to search for a specific single document using it's `_id`, use `.findById()`. This method will return a single document if found and `null` if the document is not found.
+
+- If you're searching for a single document that matches a certain criteria, use `.findOne()`. `.findOne()` returns the matching document. It returns `null` if the document is not found.
+
+- To find out whether or not a document exists that matches the given criteria, use `.exists()`. `.exists()` returns a boolean: `true` if exists, `false` if it does not exist.
+
+- To delete one of the documents created that matches the given criteria, use `.deleteOne()`. `.deleteOne()` returns an object with the key `deletedCount` and value of how many documents were deleted. A value of 0 will be returned if the document does not exist.
+
+## `.where()` Queries
+
+- `.where()` queries are very similar to `.find()` with the key difference being we can chain the query methods.
+
+```js
+const usingWhere = await Idol.where("name").equals("Mori Calliope"); //example of chaining methods for single query
+```
+
+```js
+const usingWhere = await Idol.where("name")
+  .equals("Mori Calliope")
+  .where("subcount")
+  .equals(1890000); //chaining for multiple queries
+```
+
+- `.gt()` is "greater than" method and `.lt()` is "less than" method

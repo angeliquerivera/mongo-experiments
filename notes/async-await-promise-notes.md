@@ -17,9 +17,10 @@
 ## `async` keyword
 
 - An asynchronous function is a function that knows how to expect the possibility of the `await` keyword being used to invoke asychronous code.
-- Asychronous code is code that you run that needs time to eventually return a value. Synchronous code can be evaluated immediately and return a value.
+- Asynchronous code is code that you run that needs time to eventually return a value. Synchronous code can be evaluated immediately and return a value.
 
 ## Examples of asynchronous code
 
 - Database operations
+- APIs
 -

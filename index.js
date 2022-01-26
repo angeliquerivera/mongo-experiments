@@ -14,14 +14,20 @@ const Idol = require("./schema/Idol"); //local import
 //   await idolTwo.save();
 //   console.log(idolTwo);
 // }
-async function run() {
+function run() {
   try {
-    // Nene: "61ef5944004f4e91fbc4adca"-
+    // Nene: "61ef5944004f4e91fbc4adca"
     // Polka:"61ef596c705f46b8ed0c418a"
-    const findNene = await Idol.findById("61ef5944004f4e91fbc4adca");
-    findNene.unitMembers.push("nene has almost a million husbands");
-    await findNene.save();
-    console.log(findNene);
+
+    // hexadecimal -> 0123456789abcdef
+    // hex color: 6 digits; e.g. #5c9
+
+    const findNene = Idol.findById("61ef5944004f4e91fbc4adca");
+    // findNene.unitMembers.push("nene has almost a million husbands");
+    // await findNene.save();
+
+    console.log(Object.keys(findNene));
+    // console.log(findNene);
   } catch (error) {
     console.error(error.message);
   }

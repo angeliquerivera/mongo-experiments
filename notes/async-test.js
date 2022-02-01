@@ -12,9 +12,21 @@ function hello() {
  * An async function
  */
 
-// async function helloAsync() {
-//   return await Promise.resolve("Hello!!!");
+// function noAsyncPromise() {
+//   return Promise.resolve("this promise has resolved");
 // }
+
+// console.log(noAsyncPromise());
+
+// async function noAwaitPromise() {
+//   return Promise.resolve("this promise has resolved");
+// }
+
+// noAwaitPromise().then(console.log);
+
+async function helloAsync() {
+  return await Promise.resolve("Hello!!!");
+}
 
 // helloAsync().then(console.log);
 
@@ -27,7 +39,7 @@ async function helloTryCatch() {
   }
 }
 
-helloTryCatch();
+// helloTryCatch();
 
 // console.log(helloAsync()); // returns a Promise
 // ES5

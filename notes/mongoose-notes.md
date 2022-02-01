@@ -7,7 +7,14 @@
 ## What is a schema?
 
 - Schema" refers to an organizational blueprint of how a DB and its collections are put together.
-  - A subschema is good to have when the parent schema will have nested data that itself is plentiful. It may not be necessary to define a subschema if the nested data is only a few simple fields.
+- A subschema is good to have when the parent schema will have nested data that itself is plentiful. It may not be necessary to define a subschema if the nested data is only a few simple fields.
+
+## What is a model?
+
+- A model is a fancy constructor compiled from schema definitions.
+- An instance of a model is called a document.
+- Models are responsible for creating and reading documents from the underlying MongoDB database.
+- When you call `mongoose.model()` on a schema, Mongoose complies a model for you.
 
 ### How is a schema used in the creating and updating of documents?
 
@@ -127,3 +134,25 @@ const usingWhere = await Idol.where("name")
 ```
 
 - `.gt()` is "greater than" method and `.lt()` is "less than" method
+
+## Manually updating an existing document
+
+- difference between outputs of `.find` and `.findOne` and `.where`
+
+  - `.where()` and `.find()` are generic searches and therefore output a collection of data aka arrays of objects (documents).
+  - `.findOne()` outputs a specific query result therefore returns the first matching document object.
+
+- how and when `.save()` is applied
+
+  - When you update a document manually, you must use `.save()` to save the information manually.
+    - `.save()` is an asynchronous function that needs `await` in order to run properly.
+
+## `.populate()`
+
+- `.populate()` is a method that allows you to combine/join data based off of references existing on one or more documents into a returned set of data.
+- `.populate()` does not modify the populated data entries.
+- the populate method allows databases to remain small by using document references across the database for query-time data combinations.
+
+### Schema must-haves
+
+- When you have a field that you can populate on, you need to ensure that that field also contains a `ref key` refering to the model name to use the `ObjectId` to search on.

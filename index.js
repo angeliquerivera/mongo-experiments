@@ -22,13 +22,12 @@ async function run() {
     // hexadecimal -> 0123456789abcdef
     // hex color: 6 digits; e.g. #5c9
 
-    const findAllIdols = await Idol.find({ name: "Momosuzu Nene" });
-    // findNene.unitMembers.push("nene has almost a million husbands");
-    // await findNene.save();
+    // const polka = await Idol.findById("61ef596c705f46b8ed0c418a");
+    // console.log(polka);
+    const findNene = await Idol.where("name").equals("Momosuzu Nene");
 
-    // console.log(Object.keys(findNene));
-
-    console.log(findAllIdols);
+    // console.log(JSON.stringify(findNene, null, 2));
+    console.log(findNene[0]);
   } catch (error) {
     console.error(error.message);
   }

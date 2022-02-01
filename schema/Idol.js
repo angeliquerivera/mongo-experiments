@@ -22,7 +22,7 @@ const idolSchema = new mongoose.Schema({
   fanName: String,
   seiso: Boolean,
   unit: String,
-  unitMembers: [mongoose.SchemaTypes.ObjectId],
+  unitMembers: { type: [mongoose.SchemaTypes.ObjectId], ref: "Idol" },
   hashTags: hashtagSchema,
   createdAt: { type: Date, default: () => Date.now(), immutable: true },
   updatedAt: { type: Date, default: () => Date.now() },

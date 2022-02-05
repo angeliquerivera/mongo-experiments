@@ -156,3 +156,21 @@ const usingWhere = await Idol.where("name")
 ### Schema must-haves
 
 - When you have a field that you can populate on, you need to ensure that that field also contains a `ref key` refering to the model name to use the `ObjectId` to search on.
+
+## Schema methods
+
+- You can add different methods and functionalites directly to the schema so that you can access different data based on these customized functions.
+- Schema methods are ways to add methods to schema the same way that we would add instance methods to classes in `Idol.js`.
+
+## Static methods
+
+- Static methods DO NOT work on instances. Instead, they work directly on the model.
+
+## Chainable methods
+
+- We can add methods that ONLY operate on queries you run to the schema.
+
+## Virtual methods
+
+- Virtual methods are named and they use getters and setters just like Classes can, so they are not invoked. The virtual method itself is not a function, rather its getter/setter is.
+- Virtual methods don't change anything but they do help in gathering data (similar to `.populate()`).

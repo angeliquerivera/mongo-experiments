@@ -1,33 +1,21 @@
 const mongoose = require("mongoose"); //installed library import
 const Idol = require("./schema/Idol"); //local import
 
-// const idolOne = new Idol({ name: "Houshou Marine", height: 150 });
-
-// Using .then()
-// idolOne.save().then(() => {
-//   console.log("idolOne saved");
-// });
-
-// Using async/await; BEST PRACTICE
-// async function run() {
-//   const idolTwo = new Idol({ name: "Amelia Watson", height: 150 });
-//   await idolTwo.save();
-//   console.log(idolTwo);
-// }
 async function run() {
   try {
-    // Nene: "61ef5944004f4e91fbc4adca"
-    // Polka:"61ef596c705f46b8ed0c418a"
-
-    // hexadecimal -> 0123456789abcdef
-    // hex color: 6 digits; e.g. #5c9
-
-    // const polka = await Idol.findById("61ef596c705f46b8ed0c418a");
-    // console.log(polka);
-    const findNene = await Idol.where("name").equals("Momosuzu Nene");
-
-    // console.log(JSON.stringify(findNene, null, 2));
-    console.log(findNene[0]);
+    /**
+     * 1. Create entry for Lamy
+     * 2. Create one for Botan too
+     * 3. Add both of Lamy's and Botan's ObjectId's to Nene's unitMembers
+     * - used .findOne() for Nene
+     * - used .findOne() for Lamy and Botan
+     * - assigned variables for Lamy and Botan's ObjectIds
+     * - used .push() to add both Lamy and Botan's ObjectIds to Nene's unitMembers array
+     * - saved the updated Nene document
+     * 4. Return a populated Nene document containing each of her three unitMember's data.
+     */
+    const idol = await Idol.find().bySubcount(1080000);
+    console.log(idol[0].nameAndSubs);
   } catch (error) {
     console.error(error.message);
   }

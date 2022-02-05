@@ -23,9 +23,29 @@ const idolSchema = new mongoose.Schema({
   seiso: Boolean,
   unit: String,
   unitMembers: { type: [mongoose.SchemaTypes.ObjectId], ref: "Idol" },
-  hashTags: hashtagSchema,
+  // hashTags: { // <- explicit object, no new Schema created, therefore created at document creation time
+  //   streamTags: [String],
+  //   fanArt: [String],
+  // },
+  hashTags: hashtagSchema, // <- this is a NEW Schema
   createdAt: { type: Date, default: () => Date.now(), immutable: true },
   updatedAt: { type: Date, default: () => Date.now() },
+});
+
+idolSchema.methods.sayHello = function () {
+  console.log(`Hello! My name is ${this.name}!`);
+};
+
+idolSchema.statics.findByName = function (name) {
+  return this.find({ name });
+};
+
+idolSchema.query.bySubcount = function (subcount) {
+  return this.where("subcount").equals(subcount);
+};
+
+idolSchema.virtual("nameAndSubs").get(function () {
+  return `Hello! I'm ${this.name}, and I currently have ${this.subcount} subs on YouTube.`;
 });
 
 module.exports = mongoose.model("Idol", idolSchema);

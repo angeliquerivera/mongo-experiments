@@ -4,18 +4,17 @@ const Idol = require("./schema/Idol"); //local import
 async function run() {
   try {
     /**
-     * 1. Create entry for Lamy
-     * 2. Create one for Botan too
-     * 3. Add both of Lamy's and Botan's ObjectId's to Nene's unitMembers
-     * - used .findOne() for Nene
-     * - used .findOne() for Lamy and Botan
-     * - assigned variables for Lamy and Botan's ObjectIds
-     * - used .push() to add both Lamy and Botan's ObjectIds to Nene's unitMembers array
-     * - saved the updated Nene document
-     * 4. Return a populated Nene document containing each of her three unitMember's data.
+     * 1.
      */
-    const idol = await Idol.find().bySubcount(1080000);
-    console.log(idol[0].nameAndSubs);
+
+    const idolSubaru = await Idol.findOne({ name: "Oozora Subaru" });
+    idolSubaru.subcount = 1260000;
+    await idolSubaru.save();
+    // THIS IS WHERE THE .post("save") happens; before the console.log
+    console.log(idolSubaru);
+    // idols.forEach((idol) => {
+    //   console.log(idol.nameAndSubs);
+    // });
   } catch (error) {
     console.error(error.message);
   }

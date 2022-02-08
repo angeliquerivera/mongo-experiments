@@ -118,6 +118,24 @@ async function run() {
 
 - To delete one of the documents created that matches the given criteria, use `.deleteOne()`. `.deleteOne()` returns an object with the key `deletedCount` and value of how many documents were deleted. A value of 0 will be returned if the document does not exist.
 
+- Mongoose models provide several static helper functions for CRUD operations. Each of these functions returns a mongoose `Query` object.
+
+  - `Model.deleteMany()`
+  - `Model.deleteOne()`
+  - `Model.find()`
+  - `Model.findById()`
+  - `Model.findByIdAndDelete()`
+  - `Model.findByIdAndRemove()`
+  - `Model.findByIdAndUpdate()`
+  - `Model.findOne()`
+  - `Model.findOneAndDelete()`
+  - `Model.findOneAndRemove()`
+  - `Model.findOneAndReplace()`
+  - `Model.findOneAndUpdate()`
+  - `Model.replaceOne()`
+  - `Model.updateMany()`
+  - `Model.updateOne()`
+
 ## `.where()` Queries
 
 - `.where()` queries are very similar to `.find()` with the key difference being we can chain the query methods.
@@ -149,7 +167,7 @@ const usingWhere = await Idol.where("name")
 
 ## `.populate()`
 
-- `.populate()` is a method that allows you to combine/join data based off of references existing on one or more documents into a returned set of data.
+- `.populate()` is a method that allows you to combine/JOIN data based off of references existing on one or more documents into a returned set of data.
 - `.populate()` does not modify the populated data entries.
 - the populate method allows databases to remain small by using document references across the database for query-time data combinations.
 
@@ -162,15 +180,40 @@ const usingWhere = await Idol.where("name")
 - You can add different methods and functionalites directly to the schema so that you can access different data based on these customized functions.
 - Schema methods are ways to add methods to schema the same way that we would add instance methods to classes in `Idol.js`.
 
+### Frame of reference
+
+- `this`: the document(s)
+
 ## Static methods
 
 - Static methods DO NOT work on instances. Instead, they work directly on the model.
+
+### Frame of reference
+
+- `this`: the Model
 
 ## Chainable methods
 
 - We can add methods that ONLY operate on queries you run to the schema.
 
+### Frame of reference
+
+- `this`: the Query
+
 ## Virtual methods
 
 - Virtual methods are named and they use getters and setters just like Classes can, so they are not invoked. The virtual method itself is not a function, rather its getter/setter is.
 - Virtual methods don't change anything but they do help in gathering data (similar to `.populate()`).
+- Virtual methods are the simplest ways to compose new data from existing document fields.
+
+### Frame of reference
+
+- `this`: the document(s)
+
+## Schema Middleware
+
+- Similar to Express Middleware where it allows you to run code inbetween actions. There is Middleware that covers saving, validating, updating and removing (specific to document functions).
+
+### Middleware hooks
+
+- Works off of methods call `pre` and `post`. They provide the framework for the middleware to happen.
